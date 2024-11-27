@@ -1,0 +1,12 @@
+{
+    "name": "vulnerable-by-design",
+    "image": "docker.io/kcdubois/devcontainer-base:1",
+    "features": {
+        "ghcr.io/devcontainers/features/azure-cli:1": {},
+        "ghcr.io/devcontainers/features/terraform:1": {},
+        "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+            "minikube": "none"
+        },
+        "ghcr.io/devcontainers/features/aws-cli:1": {}
+    }
+}
