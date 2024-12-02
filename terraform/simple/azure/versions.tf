@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/azurerm"
     }
 
+    azuread = {
+      source  = "hashicorp/azuread"
+    }
+
     random = {
       source  = "hashicorp/random"
     }
