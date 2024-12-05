@@ -39,7 +39,7 @@ resource "azuread_service_principal" "sp" {
 
 resource "azuread_service_principal_password" "sp_password" {
   service_principal_id = azuread_service_principal.sp.id
-  end_date = timeadd(timestamp(), "8760h")
+
 }
 
 # Assign Contributor role to service principal

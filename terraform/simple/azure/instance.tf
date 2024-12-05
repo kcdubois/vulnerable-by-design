@@ -16,6 +16,12 @@ resource "azurerm_network_interface" "vm_nic" {
 
   tags = local.combined_tags
 }
+
+resource "azurerm_network_interface_security_group_association" "nsg_association" {
+  network_interface_id      = azurerm_network_interface.vm_nic.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
+}
+
 resource "azurerm_public_ip" "vm_public_ip" {
   name                = "pip-${var.name}-${random_string.project_suffix.result}"
   resource_group_name = azurerm_resource_group.rg.name
@@ -60,7 +66,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
     type = "SystemAssigned"
   }
 
-  user_data = base64encode(file("${path.module}/../../../deploy/simple-nginx/install_nginx.sh"))
+  user_data = base64encode(file("${path.module}/../../../deploy/docker-app/deploy.sh"))
 
   tags = local.combined_tags
 }
+
