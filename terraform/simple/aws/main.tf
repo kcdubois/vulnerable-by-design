@@ -6,12 +6,17 @@ data "aws_ami" "latest" {
 
   filter {
     name   = "name"
-    values = ["ubuntu-*-*-*-*-*"]
+    values = ["ubuntu/images/*ubuntu-noble*"]
   }
 
   filter {
     name   = "architecture"
     values = ["x86_64"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
   }
 }
 
