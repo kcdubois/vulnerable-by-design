@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasky
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tasky
+  template:
+    metadata:
+      labels:
+        app: tasky
+    spec:
+      containers:
+        - name: tasky
+          image: jeffthorne/tasky:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "1.0"
+              memory: "512M"
+            requests:
+              cpu: "500m"
+              memory: "256M"
+          envFrom:
+            - secretRef:
+                name: tasky-secret
