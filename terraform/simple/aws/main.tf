@@ -1,4 +1,5 @@
 data "aws_caller_identity" "current" {}
+data "aws_region" "current" {}
 
 data "aws_ami" "latest" {
   most_recent = true
@@ -20,10 +21,8 @@ data "aws_ami" "latest" {
   }
 }
 
+module "lab" {
+  source = "../../modules/lab"
 
-resource "random_string" "project" {
-  length  = 6
-  upper   = false
-  lower   = true
-  special = false
+  tags = var.tags
 }

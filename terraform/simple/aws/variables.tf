@@ -1,33 +1,33 @@
 variable "region" {
-  type = string
+  type        = string
   description = "AWS region to be used"
-  default = "us-east-1"
+  default     = "us-east-1"
 }
 
 variable "instance_type" {
-  type = string
+  type        = string
   description = "Instance type to be used"
 }
 
-variable "name" {
-  type = string
-  description = "Name of the resources"
+variable "cidr_block" {
+  type        = string
+  description = "CIDR block used for the VPC"
+  default     = "172.20.0.0/20"
 }
 
 variable "tags" {
-  type = map(string)
+  type        = map(string)
   description = "Tags to be applied to the resources"
-  default = {}
+  default     = {}
 }
 
-variable "cidr_block" {
-  type = string
-  description = "CIDR block to be used"
-  default = "10.0.0.0/16"
+variable "admin_username" {
+  type    = string
+  default = "ubuntu"
 }
 
-variable "public_key_path" {
-  type = string
+variable "ssh_key_path" {
+  type        = string
   description = "Path to the public key"
-  default = "~/.ssh/id_rsa.pub"
+  default     = "~/.ssh/id_rsa.pub"
 }

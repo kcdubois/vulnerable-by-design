@@ -10,19 +10,19 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
   enable_dns_support   = true
 
-  tags = merge(var.tags, {
-    Name = "${var.name}-vpc"
+  tags = merge(module.lab.tags, {
+    Name = "${module.lab.full_name}-vpc"
   })
 }
 
 resource "aws_subnet" "public" {
-  vpc_id            = aws_vpc.main.id
-  availability_zone = data.aws_availability_zones.available.names[0]
-  cidr_block        = cidrsubnet(var.cidr_block, 4, 0)
+  vpc_id                  = aws_vpc.main.id
+  availability_zone       = data.aws_availability_zones.available.names[0]
+  cidr_block              = cidrsubnet(var.cidr_block, 4, 0)
   map_public_ip_on_launch = true
-  
-  tags = merge(var.tags, {
-    Name = "${var.name}-public-subnet"
+
+  tags = merge(module.lab.tags, {
+    Name = "${module.lab.full_name}-public"
   })
 }
 
@@ -32,7 +32,7 @@ resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(var.tags, {
-    Name = "${var.name}-igw"
+    Name = "${module.lab.full_name}-igw"
   })
 }
 
@@ -40,7 +40,7 @@ resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
   tags = merge(var.tags, {
-    Name = "${var.name}-public-route-table"
+    Name = "${module.lab.full_name}-public-route-table"
   })
 }
 

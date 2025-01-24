@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "sensitive_data" {
-  bucket        = "${var.name}-${random_string.project.result}-sensitive-data"
+  bucket        = "${module.lab.full_name}-sensitive-data"
   force_destroy = true
 
-  tags = merge(var.tags, {
-    Name = "${var.name}-${random_string.project.result}-sensitive-data"
+  tags = merge(module.lab.tags, {
+    Name = "${module.lab.full_name}-sensitive-data"
   })
 }
 
@@ -29,8 +29,8 @@ resource "aws_s3_bucket_policy" "sensitive_data" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid       = "AllowInstanceRoleAccess"
-        Effect    = "Allow"
+        Sid    = "AllowInstanceRoleAccess"
+        Effect = "Allow"
         Principal = {
           AWS = aws_iam_role.instance_role.arn
         }
@@ -52,8 +52,8 @@ resource "aws_s3_bucket_policy" "admin_access" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid       = "AllowManagementAcxcess"
-        Effect    = "Allow"
+        Sid    = "AllowManagementAcxcess"
+        Effect = "Allow"
         Principal = {
           AWS = data.aws_caller_identity.current.arn
         }
