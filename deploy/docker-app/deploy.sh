@@ -23,7 +23,8 @@ echo "Deploy DFIR-IRIS on Docker compose"
 
 cd /opt
 git clone -b $IRIS_VERSION https://github.com/dfir-iris/iris-web.git 
-chown -R ubuntu:ubuntu iris-web
+
+chown -R $1:$1 iris-web
 cd iris-web
 cp .env.model .env
 docker compose build && docker compose up -d
