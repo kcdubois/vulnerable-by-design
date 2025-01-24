@@ -37,6 +37,5 @@ resource "random_password" "lab_password" {
 resource "random_pet" "name" {
   separator = var.separator
   length    = 2
-  prefix    = ""
 }
 
