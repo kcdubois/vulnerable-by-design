@@ -3,12 +3,12 @@
 #
 
 resource "azurerm_storage_account" "storage" {
-  name                     = "bucket${var.name}${random_string.project_suffix.result}"
+  name                     = "blob${module.lab.id}"
   location                 = var.location
   resource_group_name      = azurerm_resource_group.rg.name
   account_tier             = "Standard"
   account_replication_type = "LRS"
-  tags                     = local.combined_tags
+  tags                     = module.lab.tags
 }
 
 resource "azurerm_storage_container" "container" {

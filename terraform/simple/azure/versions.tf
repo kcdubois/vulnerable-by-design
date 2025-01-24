@@ -1,21 +1,25 @@
 terraform {
   required_providers {
     azurerm = {
-      source  = "hashicorp/azurerm"
+      source = "hashicorp/azurerm"
     }
 
     azuread = {
-      source  = "hashicorp/azuread"
+      source = "hashicorp/azuread"
     }
 
     random = {
-      source  = "hashicorp/random"
+      source = "hashicorp/random"
     }
   }
 }
 
 provider "azurerm" {
-  features {}
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = true
+    }
+  }
   subscription_id = var.subscription_id
-  use_cli = true
+  use_cli         = true
 }

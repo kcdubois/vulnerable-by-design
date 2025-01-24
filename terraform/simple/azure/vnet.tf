@@ -3,11 +3,11 @@
 #
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "vnet-${var.name}-${random_string.project_suffix.result}"
+  name                = "vnet-${module.lab.name}-${module.lab.short_id}"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   address_space       = ["10.0.0.0/16"]
-  tags                = local.combined_tags
+  tags                = module.lab.tags
 }
 
 resource "azurerm_subnet" "public" {
@@ -32,7 +32,7 @@ resource "azurerm_subnet" "management" {
 }
 
 resource "azurerm_network_security_group" "nsg" {
-  name                = "nsg-${var.name}-${random_string.project_suffix.result}"
+  name                = "nsg-${module.lab.name}-${module.lab.short_id}"
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -60,5 +60,5 @@ resource "azurerm_network_security_group" "nsg" {
     destination_address_prefix = "*"
   }
 
-  tags = local.combined_tags
+  tags = module.lab.tags
 }
