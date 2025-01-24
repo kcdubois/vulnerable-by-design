@@ -1,7 +1,11 @@
 locals {
   tags = merge(
     var.tags,
-    { lab_id = random_string.lab_id.result, managed_by = "terraform" }
+    {
+      lab_id       = random_string.lab_id.result,
+      managed_by   = "terraform",
+      project_name = random_pet.name.id
+    }
   )
 }
 
@@ -30,5 +34,9 @@ resource "random_password" "lab_password" {
   min_numeric = 2
 }
 
-resource "random_pet" "name" {}
+resource "random_pet" "name" {
+  separator = var.separator
+  length    = 2
+  prefix    = ""
+}
 

@@ -9,3 +9,9 @@ variable "prefix" {
   description = "Prefix used for lab name"
   default     = "lab"
 }
+
+variable "separator" {
+  type        = string
+  description = "Separator character used for project name creation (ex: charming-ray)"
+  default     = "-"
+}
