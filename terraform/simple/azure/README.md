@@ -71,7 +71,7 @@ An easy way to connect to the infrastructure is with the use of the Terraform ou
 to use some shell magic to connect to the newly created virtual machine:
 
 ```shell
-ssh -i ./cloudlabs -o HostKeyChecking=no $(terraform output --raw admin_username)@$(terraform output --raw vm_public_ip)
+ssh -i ./cloudlabs -o StrictHostKeyChecking=no $(terraform output --raw admin_username)@$(terraform output --raw vm_public_ip)
 ```
 
 ## Retrieve the VM's IP address and administrative password

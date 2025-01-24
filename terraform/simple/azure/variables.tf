@@ -30,5 +30,5 @@ variable "tags" {
 
 variable "ssh_key_path" {
   type    = string
-  default = "./id_lab"
+  default = "~/id_rsa.pub"
 }

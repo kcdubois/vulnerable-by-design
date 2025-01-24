@@ -24,5 +24,5 @@ resource "azurerm_key_vault_secret" "secret" {
   value        = "VerySecretValue123!"
   key_vault_id = azurerm_key_vault.vault.id
 
-  depends_on = [azurerm_role_assignment.vm_rbac_rg]
+  depends_on = [azurerm_role_assignment.current_rbac_rg]
 }
